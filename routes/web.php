@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +18,25 @@ use Illuminate\Support\Facades\Route;
   //  return view('welcome');
 //});
 
-route::get('about',function () {
+route::get('/', function () {
+    return view('home', [
+        "title" => "Home"
+    ]);
+});
+
+route::get('/about',function () {
     return view('about', [
+        "title" => "About",
         "nama" => "M Yanuar Putra Pradana",
         "email" => "3103120139@student.smktelkom-pwt.sch.id",
         "gambar" => "bapak.jpg"
     ]);
 });
 
+route::get('/gallery', function(){
+    return view('gallery', [
+        "title" => "Gallery"
+    ]);
+});
 
-route::get('', function(){
-    return view('home');
-});
-route::get('gallery', function(){
-    return view('gallery');
-});
+route::resource('/contacts', ContactController::class);
